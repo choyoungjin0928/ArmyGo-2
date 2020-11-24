@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import Constants from 'expo-constants';
 import { firebase_db } from "../firebaseConfig"
-import { StyleSheet, Text, TextInput, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, TextInput, View, TouchableOpacity, Alert } from 'react-native';
 import { Picker } from '@react-native-community/picker';
 
 export default Setting = ({ navigation }) => {
 
+    const [data, setData] = useState([])
     const [value, setValue] = useState("")
     const [v1value, setV1alue] = useState("0000.00.00")
     const [v2value, setV2value] = useState("00")
@@ -14,6 +15,7 @@ export default Setting = ({ navigation }) => {
     useEffect(() => {
         console.log("Firbase Write")
     }, [])
+    const user_id = Constants.installationId;
     const Result = () => {
         const new_history = {
             value: value,
@@ -21,22 +23,13 @@ export default Setting = ({ navigation }) => {
             v2value: v2value,
             v3value: v3value,
         }
-        const user_id = Constants.installationId;
         console.log(value)
         console.log(v1value)
         console.log(v2value)
         console.log(v3value)
         firebase_db.ref('/data/' + user_id).set(new_history, function (error) {
             console.log(error)
-            if (error = null) {
-                navigation.navigate("Main", {
-                    value: value,
-                    v1value: v1value,
-                    v2value: v2value,
-                    v3value: v3value
-                })
-            }
-        });
+        })
     }
 
     return (
@@ -65,10 +58,10 @@ export default Setting = ({ navigation }) => {
                 <Text style={styles.tt}>위로휴가</Text>
                 <TextInput style={styles.tt2} placeholder="00일" onChangeText={setV3value} />
                 <TouchableOpacity
-                    onPress={() => Result()}
+                    onPress={() => Result() || Alert.alert("앱을 다시 실행해주세요")}
                 >
                     <Text>{"\n"}</Text>
-                    <Text>Submit</Text>
+                    <Text style={styles.tt3}>Submit</Text>
                 </TouchableOpacity>
             </View>
         </>
@@ -87,13 +80,7 @@ const styles = StyleSheet.create({
     tt2: {
         fontSize: 15
     },
-    submitButton: {
-        backgroundColor: "black",
-        padding: 10,
-        margin: 15,
-        height: 40
-    },
-    submitButtonText: {
-        color: "white"
+    tt3: {
+        fontSize: 25
     }
 });

@@ -6,7 +6,7 @@ import innerdata from '../data.json';
 
 export default Main = ({ navigation }) => {
     let title = ""
- 
+
     const [data, setData] = useState([])
     useEffect(() => {
         const user_id = Constants.installationId;
@@ -27,7 +27,8 @@ export default Main = ({ navigation }) => {
     else if (data.value == innerdata.data[3].value)
         title = innerdata.data[3].title;
 
-return (<View style={styles.container}><Text style={styles.textstyle}>군 종류 : {title}{"\n"}입대일 : {data.v1value}{"\n"}포상휴가 : {data.v2value}일{"\n"}위로휴가 : {data.v3value}일</Text></View>)
+    return (<View style={styles.container}><Text style={styles.textstyle}>군 종류 : {title}{"\n"}
+입대일 : {data.v1value}{"\n"}포상휴가 : {data.v2value}일{"\n"}위로휴가 : {data.v3value}일</Text></View>)
 }
 
 const styles = StyleSheet.create({
@@ -35,7 +36,7 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: 'white',
         justifyContent: 'center',
-        alignItems : 'center'
+        alignItems: 'center'
     },
     textstyle: {
         fontSize: 15,
