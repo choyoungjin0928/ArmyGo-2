@@ -1,4 +1,4 @@
-import React, { useState, useEffect, setEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { firebase_db } from "../firebaseConfig"
 import { StyleSheet, Text, View } from 'react-native';
 import Constants from 'expo-constants';
@@ -7,16 +7,6 @@ export default Main = ({ navigation, route }) => {
     const [data, setData] = useState([])
 
     useEffect(() => {
-        const user_id = Constants.installationId;
-        console.log("Firebase Reading")
-        firebase_db.ref('/data/'+ user_id).once('value').then((snapshot) => {
-            console.log("Firebase Read Finish")
-            let data = snapshot.val();
-            setData(data)
-        });
-    }, [])
-
-    setEffect(() => {
         const user_id = Constants.installationId;
         console.log("Firebase Reading")
         firebase_db.ref('/data/'+ user_id).once('value').then((snapshot) => {
