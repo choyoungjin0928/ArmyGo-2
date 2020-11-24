@@ -59,17 +59,13 @@ export default Setting = ({ navigation }) => {
 
                 <Text>{"\n"}</Text>
                 <Text style={styles.tt}>포상휴가</Text>
-                <TextInput style={styles.tt2} placeholder="00" onChangeText={setV2value} />
-                <TouchableOpacity
-                    onPress={() => console.log(value) || console.log(v1value) || console.log(v2value) || console.log(v3value) || Result()}
-                >
+                <TextInput style={styles.tt2} placeholder="00일" onChangeText={setV2value} />
 
-                    <Text>{"\n"}</Text>
-                </TouchableOpacity>
+                <Text>{"\n"}</Text>
                 <Text style={styles.tt}>위로휴가</Text>
-                <TextInput style={styles.tt2} placeholder="00" onChangeText={setV3value} />
+                <TextInput style={styles.tt2} placeholder="00일" onChangeText={setV3value} />
                 <TouchableOpacity
-                    onPress={() => console.log(value) || console.log(v1value) || console.log(v2value) || console.log(v3value) || Result()}
+                    onPress={() => Result()}
                 >
                     <Text>{"\n"}</Text>
                     <Text>Submit</Text>
