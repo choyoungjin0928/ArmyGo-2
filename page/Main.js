@@ -13,8 +13,11 @@ export default Main = ({ navigation }) => {
         console.log("Firebase Reading")
         firebase_db.ref('/data/' + user_id).once('value').then((snapshot) => {
             console.log("Firebase Read Finish")
-            let data = snapshot.val();
-            setData(data)
+            let data;
+            if (data = snapshot.val())
+                setData(data);
+            else
+                Alert.alert('초기설정을 해주세요.');
         });
     }, [])
 
