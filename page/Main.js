@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { firebase_db } from "../firebaseConfig"
-import { StyleSheet, Text, View } from 'react-native';
+import { Alert, StyleSheet, Text, View } from 'react-native';
 import Constants from 'expo-constants';
 import innerdata from '../data.json';
 
