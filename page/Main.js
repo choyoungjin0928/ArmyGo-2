@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { firebase_db } from "../firebaseConfig"
-import { Alert, StyleSheet, Text, View } from 'react-native';
+import { Alert, StyleSheet, Text, View, Image } from 'react-native';
 import Constants from 'expo-constants';
 import innerdata from '../data.json';
+import roka from "../assets/roka.png"
+import marin from "../assets/marin.png"
+import navi from "../assets/navi.png"
+import air from "../assets/air.png"
 
-export default Main = ({ navigation }) => {
+export default Main = () => {
     let title = ""
 
     const [data, setData] = useState([])
@@ -30,8 +34,16 @@ export default Main = ({ navigation }) => {
     else if (data.value == innerdata.data[3].value)
         title = innerdata.data[3].title;
 
-    return (<View style={styles.container}><Text style={styles.textstyle}>군 종류 : {title}{"\n"}
-입대일 : {data.v1value}{"\n"}포상휴가 : {data.v2value}일{"\n"}위로휴가 : {data.v3value}일</Text></View>)
+    return (
+        (data.value == "roka" && <View style={styles.container}><Text style={styles.textstyle}>군 종류 : {title}{"\n"}입대일 : {data.v1value}{"\n"}포상휴가 : {data.v2value}일{"\n"}위로휴가 : {data.v3value}일</Text>
+            <Image source={roka} style={{ height: '50%', width: '50%' }} /></View>) ||
+        (data.value == "marin" && <View style={styles.container}><Text style={styles.textstyle}>군 종류 : {title}{"\n"}입대일 : {data.v1value}{"\n"}포상휴가 : {data.v2value}일{"\n"}위로휴가 : {data.v3value}일</Text>
+            <Image source={marin} style={{ height: '50%', width: '50%' }} /></View>) ||
+        (data.value == "navi" && <View style={styles.container}><Text style={styles.textstyle}>군 종류 : {title}{"\n"}입대일 : {data.v1value}{"\n"}포상휴가 : {data.v2value}일{"\n"}위로휴가 : {data.v3value}일</Text>
+            <Image source={navi} style={{ height: '50%', width: '50%' }} /></View>) ||
+        (data.value == "air" && <View style={styles.container}><Text style={styles.textstyle}>군 종류 : {title}{"\n"}입대일 : {data.v1value}{"\n"}포상휴가 : {data.v2value}일{"\n"}위로휴가 : {data.v3value}일</Text>
+            <Image source={air} style={{ height: '40%', width: '90%' }} /></View>) || (<View style={styles.container}><Text style={styles.textstyle}>설정 페이지에서 초기설정을 해주세요.</Text></View>)
+    )
 }
 
 const styles = StyleSheet.create({

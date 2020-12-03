@@ -4,18 +4,29 @@ import { firebase_db } from "../firebaseConfig"
 import { StyleSheet, Text, TextInput, View, TouchableOpacity, Alert } from 'react-native';
 import { Picker } from '@react-native-community/picker';
 
-export default Setting = ({ navigation }) => {
+export default Setting = () => {
+    const user_id = Constants.installationId;
 
-    const [data, setData] = useState([])
-    const [value, setValue] = useState("")
+    const [value, setValue] = useState("null")
     const [v1value, setV1alue] = useState("0000.00.00")
     const [v2value, setV2value] = useState("00")
     const [v3value, setV3value] = useState("00")
 
     useEffect(() => {
-        console.log("Firbase Write")
+        const user_id = Constants.installationId;
+        console.log("Firbase Reading for Writing")
+        firebase_db.ref('/data/' + user_id).once('value').then((snapshot) => {
+            console.log("Firebase Read Finish")
+            let data
+            if(data = snapshot.val()){
+                setValue(data.value);
+                setV1alue(data.v1value);
+                setV2value(data.v2value);
+                setV3value(data.v3value);
+            }
+        });
     }, [])
-    const user_id = Constants.installationId;
+
     const Result = () => {
         const new_history = {
             value: value,
@@ -48,7 +59,6 @@ export default Setting = ({ navigation }) => {
                 <Text>{"\n"}</Text>
                 <Text style={styles.tt}>입대날짜</Text>
                 <TextInput style={styles.tt2} placeholder="2020.11.11" onChangeText={setV1alue} />
-
 
                 <Text>{"\n"}</Text>
                 <Text style={styles.tt}>포상휴가</Text>
