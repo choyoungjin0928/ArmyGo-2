@@ -10,6 +10,7 @@ import air from "../assets/air.png"
 
 export default Main = () => {
     let title = ""
+    let worktime = 0
 
     const [data, setData] = useState([])
     useEffect(() => {
@@ -25,23 +26,42 @@ export default Main = () => {
         });
     }, [])
 
-    if (data.value == innerdata.data[0].value)
+    if (data.value == innerdata.data[0].value) {
         title = innerdata.data[0].title;
-    else if (data.value == innerdata.data[1].value)
+        worktime = innerdata.data[0].date;
+    }
+    else if (data.value == innerdata.data[1].value) {
         title = innerdata.data[1].title;
-    else if (data.value == innerdata.data[2].value)
+        worktime = innerdata.data[1].date;
+    }
+    else if (data.value == innerdata.data[2].value) {
         title = innerdata.data[2].title;
-    else if (data.value == innerdata.data[3].value)
+        worktime = innerdata.data[2].date;
+    }
+    else if (data.value == innerdata.data[3].value) {
         title = innerdata.data[3].title;
+        worktime = innerdata.data[3].date;
+    }
+
+    var tData = []
+    tData = data.v1value
+    if (tData) {
+        var tDataresult = tData.split('.')
+        console.log(tDataresult[0], tDataresult[1], tDataresult[2])
+        let date1 = new Date(parseInt(tDataresult[0]), parseInt(tDataresult[1]), parseInt(tDataresult[2]));
+        let date2 = new Date(Date.parse(date1) + worktime * 1000 * 60 * 60 * 24)
+        var fDate = date2.getFullYear() + '.' + date2.getMonth() + '.' + date2.getDate()
+        console.log(fDate)
+    }
 
     return (
-        (data.value == "roka" && <View style={styles.container}><Text style={styles.textstyle}>군 종류 : {title}{"\n"}입대일 : {data.v1value}{"\n"}포상휴가 : {data.v2value}일{"\n"}위로휴가 : {data.v3value}일</Text>
+        (data.value == "roka" && <View style={styles.container}><Text style={styles.textstyle}>군 종류 : {title}{"\n"}입대일 : {data.v1value}{"\n"}전역일 : {fDate}{"\n"}포상휴가 : {data.v2value}일{"\n"}위로휴가 : {data.v3value}일</Text>
             <Image source={roka} style={{ height: '50%', width: '50%' }} /></View>) ||
-        (data.value == "marin" && <View style={styles.container}><Text style={styles.textstyle}>군 종류 : {title}{"\n"}입대일 : {data.v1value}{"\n"}포상휴가 : {data.v2value}일{"\n"}위로휴가 : {data.v3value}일</Text>
+        (data.value == "marin" && <View style={styles.container}><Text style={styles.textstyle}>군 종류 : {title}{"\n"}입대일 : {data.v1value}{"\n"}전역일 : {fDate}{"\n"}포상휴가 : {data.v2value}일{"\n"}위로휴가 : {data.v3value}일</Text>
             <Image source={marin} style={{ height: '50%', width: '50%' }} /></View>) ||
-        (data.value == "navi" && <View style={styles.container}><Text style={styles.textstyle}>군 종류 : {title}{"\n"}입대일 : {data.v1value}{"\n"}포상휴가 : {data.v2value}일{"\n"}위로휴가 : {data.v3value}일</Text>
+        (data.value == "navi" && <View style={styles.container}><Text style={styles.textstyle}>군 종류 : {title}{"\n"}입대일 : {data.v1value}{"\n"}전역일 : {fDate}{"\n"}포상휴가 : {data.v2value}일{"\n"}위로휴가 : {data.v3value}일</Text>
             <Image source={navi} style={{ height: '50%', width: '50%' }} /></View>) ||
-        (data.value == "air" && <View style={styles.container}><Text style={styles.textstyle}>군 종류 : {title}{"\n"}입대일 : {data.v1value}{"\n"}포상휴가 : {data.v2value}일{"\n"}위로휴가 : {data.v3value}일</Text>
+        (data.value == "air" && <View style={styles.container}><Text style={styles.textstyle}>군 종류 : {title}{"\n"}입대일 : {data.v1value}{"\n"}전역일 : {fDate}{"\n"}포상휴가 : {data.v2value}일{"\n"}위로휴가 : {data.v3value}일</Text>
             <Image source={air} style={{ height: '40%', width: '90%' }} /></View>) || (<View style={styles.container}><Text style={styles.textstyle}>설정 페이지에서 초기설정을 해주세요.</Text></View>)
     )
 }
