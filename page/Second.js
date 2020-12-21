@@ -13,7 +13,7 @@ export default Second = () => {
     let worktime = 0
     let vct = 0
     let calvct = 0
-    let total = 0;
+    let total = 0
 
     const [data, setData] = useState([])
     useEffect(() => {
