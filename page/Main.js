@@ -14,9 +14,9 @@ export default Main = () => {
     let vct = 0
     let total = 0;
 
-    var diffDay = []
     var Ndate = new Date();
-
+    var diffDay = []
+   
     const [data, setData] = useState([])
     useEffect(() => {
         const user_id = Constants.installationId;
